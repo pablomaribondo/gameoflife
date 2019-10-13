@@ -1,5 +1,5 @@
 body {
-  background-image: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/squares.png) 
+  background-image: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/pink%20dust.png) 
 }
   
 .box {
@@ -12,15 +12,15 @@ body {
   }
 
 .off {
-  background-color: lightgray;
+  background-color: #f0f0f0;
 }
 
 .on {
-  background-color: green;
+  background-color: #ff7f50;
 }
   
 .box:hover { 
-  background: #00CCFF;
+  background: #ca7aff;
 }
 
 .center {
