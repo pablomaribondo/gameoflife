@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Button, ButtonToolbar, Dropdown, DropdownButton } from 'react-bootstrap';
 import './index.css';
 
 class Box extends Component {
@@ -20,7 +21,7 @@ class Box extends Component {
 
 class Grid extends Component {
   render() {
-    const width = this.props.cols * 16;
+    const width = this.props.cols * 14;
     let rowsArr = [];
 
     let boxClass = '';
@@ -48,6 +49,48 @@ class Grid extends Component {
     return (
       <div className="grid" style={{width: width}}>
         {rowsArr}
+      </div>
+    )
+  }
+}
+
+class Buttons extends Component {
+  handleSelect = (event) => {
+    this.props.gridSize(event);
+  }
+  render() {
+    return (
+      <div className="center">
+        <ButtonToolbar>
+          <Button className="tbar-btn" variant="outline-light" onClick={ this.props.playButton }>
+            Play
+          </Button>
+          <Button className="tbar-btn" variant="outline-light" onClick={ this.props.pauseButton }>
+            Pause
+          </Button>
+          <Button className="tbar-btn" variant="outline-light" onClick={ this.props.clear }>
+            Clear
+          </Button>
+          <Button className="tbar-btn" variant="outline-light" onClick={ this.props.slow }>
+            Slow
+          </Button>
+          <Button className="tbar-btn" variant="outline-light" onClick={ this.props.fast }>
+            Fast
+          </Button>
+          <Button className="tbar-btn" variant="outline-light" onClick={ this.props.seed }>
+            Seed
+          </Button>
+          <DropdownButton
+            title="Grid Size"
+            className="tbar-btn"
+            variant = "outline-light"
+            onSelect={ this.handleSelect }
+          >
+              <Dropdown.Item eventKey = "1">20x10</Dropdown.Item>
+              <Dropdown.Item eventKey = "2">50x30</Dropdown.Item>
+              <Dropdown.Item eventKey = "3">70x50</Dropdown.Item>
+          </DropdownButton>
+        </ButtonToolbar>
       </div>
     )
   }
@@ -134,6 +177,15 @@ class Main extends Component {
     return (
       <div>
         <h1>The Game of Life</h1>
+        <Buttons
+          playButton = { this.playButton }
+          pauseButton = { this.pauseButton }
+          slow = { this.slow }
+          fast = { this.fast }
+          clear = { this.clear }
+          seed = { this.seed }
+          gridSize = { this.gridSize }
+        />
         <Grid
           gridFull = { this.state.gridFull }
           rows = { this.rows }
